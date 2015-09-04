@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
 	<servlet>
 		<servlet-name>EskonAppEngine</servlet-name>
 		<servlet-class>fi.hatware.testi.EskonAppEngineServlet</servlet-class>
@@ -11,6 +11,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
 		<servlet-name>EskonAppEngine2</servlet-name>
 		<servlet-class>fi.hatware.testi.EskonAppEngineServlet2</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>TallennaPaikkaServlet</servlet-name>
+		<servlet-class>fi.hatware.testi.TallennaPaikkaServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ListaaLampotilat</servlet-name>
+		<servlet-class>fi.hatware.testi.ListaaLampotilatServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>EskonAppEngine</servlet-name>
@@ -20,7 +28,28 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>EskonAppEngine2</servlet-name>
 		<url-pattern>/eskonappengine2</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TallennaPaikkaServlet</servlet-name>
+		<url-pattern>/tallennapaikka</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListaaLampotilat</servlet-name>
+		<url-pattern>listaalampotilat</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	<!-- [START Objectify] -->
+	<filter>
+		<filter-name>ObjectifyFilter</filter-name>
+		<filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ObjectifyFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>fi.hatware.testi.OfyHelper</listener-class>
+	</listener>
+	<!-- [END Objectify] -->
 </web-app>
